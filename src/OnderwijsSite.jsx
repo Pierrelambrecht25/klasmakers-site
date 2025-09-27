@@ -108,7 +108,9 @@ export default function OnderwijsSite() {
       )}
       {tab === "blog" && <Blog posts={POSTS} />}
       {tab === "contact" && <Contact />}
-      <Footer />
+      {tab === "privacy" && <Privacy />}
+{tab === "terms" && <Terms />}
+      <Footer onNav={setTab} />
     </div>
   );
 }
@@ -447,7 +449,110 @@ function Contact() {
   );
 }
 
-function Footer() {
+function Privacy() {
+  return (
+    <section className="mx-auto max-w-4xl px-4 py-14">
+      <div className="bg-white/80 backdrop-blur border rounded-3xl p-8 shadow-sm">
+        <h2 className="text-2xl font-semibold">Privacybeleid</h2>
+        <p className="mt-4 text-gray-700">
+          Dit privacybeleid beschrijft hoe KlasMakers (Pierre & Lore) persoonsgegevens verwerkt.
+        </p>
+
+        <h3 className="mt-8 font-semibold">Welke gegevens verzamelen we?</h3>
+        <ul className="list-disc pl-5 text-gray-700 mt-2 space-y-1">
+          <li>Contactgegevens die je zelf invult (naam, e-mail, bericht).</li>
+          <li>Aankoopgegevens wanneer je een product bestelt.</li>
+          <li>Bezoekgegevens (anoniem) voor statistiek via analytics.</li>
+        </ul>
+
+        <h3 className="mt-6 font-semibold">Waarom verwerken we die gegevens?</h3>
+        <p className="text-gray-700 mt-2">
+          Om je bestelling/aanvraag te behandelen, support te bieden en onze site te verbeteren.
+        </p>
+
+        <h3 className="mt-6 font-semibold">Bewaartermijn</h3>
+        <p className="text-gray-700 mt-2">
+          We bewaren gegevens niet langer dan nodig voor de doelen hierboven of wettelijk vereist.
+        </p>
+
+        <h3 className="mt-6 font-semibold">Jouw rechten</h3>
+        <p className="text-gray-700 mt-2">
+          Je hebt recht op inzage, correctie, beperking, bezwaar en verwijdering. Mail ons via{" "}
+          <a className="underline" href="mailto:info@klasmakers.be">info@klasmakers.be</a>.
+        </p>
+
+        <h3 className="mt-6 font-semibold">Verantwoordelijke</h3>
+        <p className="text-gray-700 mt-2">
+          KlasMakers – Pierre & Lore, België. Contact:{" "}
+          <a className="underline" href="mailto:info@klasmakers.be">info@klasmakers.be</a>.
+        </p>
+
+        <p className="text-xs text-gray-500 mt-8">
+          Versie: {new Date().toLocaleDateString("nl-BE")} – Sjabloon; vul aan met jullie details.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Terms() {
+  return (
+    <section className="mx-auto max-w-4xl px-4 py-14">
+      <div className="bg-white/80 backdrop-blur border rounded-3xl p-8 shadow-sm">
+        <h2 className="text-2xl font-semibold">Algemene voorwaarden</h2>
+
+        <h3 className="mt-4 font-semibold">1. Identiteit</h3>
+        <p className="text-gray-700 mt-2">
+          KlasMakers (Pierre & Lore), België. E-mail:{" "}
+          <a className="underline" href="mailto:info@klasmakers.be">info@klasmakers.be</a>.
+        </p>
+
+        <h3 className="mt-4 font-semibold">2. Producten</h3>
+        <p className="text-gray-700 mt-2">
+          Digitale producten (templates, cursussen) en eventuele fysieke materialen.
+        </p>
+
+        <h3 className="mt-4 font-semibold">3. Bestellen & betalen</h3>
+        <p className="text-gray-700 mt-2">
+          Na bestelling ontvang je bevestiging en eventueel een factuur.
+          Digitale producten leveren we via download of e-mail.
+        </p>
+
+        <h3 className="mt-4 font-semibold">4. Herroepingsrecht</h3>
+        <p className="text-gray-700 mt-2">
+          Voor digitale downloads vervalt het herroepingsrecht zodra de download/link is geleverd.
+        </p>
+
+        <h3 className="mt-4 font-semibold">5. Licentie & gebruik</h3>
+        <p className="text-gray-700 mt-2">
+          Materiaal is voor eigen (school/klas)gebruik en mag niet worden doorverkocht of openbaar gedeeld.
+        </p>
+
+        <h3 className="mt-4 font-semibold">6. Aansprakelijkheid</h3>
+        <p className="text-gray-700 mt-2">
+          We streven naar kwaliteit; KlasMakers is niet aansprakelijk voor indirecte schade of verkeerd gebruik.
+        </p>
+
+        <h3 className="mt-4 font-semibold">7. Intellectuele eigendom</h3>
+        <p className="text-gray-700 mt-2">
+          Alle materialen blijven eigendom van KlasMakers, tenzij anders vermeld.
+        </p>
+
+        <h3 className="mt-4 font-semibold">8. Contact & klachten</h3>
+        <p className="text-gray-700 mt-2">
+          Vragen of klachten? Mail ons via{" "}
+          <a className="underline" href="mailto:info@klasmakers.be">info@klasmakers.be</a>.
+        </p>
+
+        <p className="text-xs text-gray-500 mt-8">
+          Versie: {new Date().toLocaleDateString("nl-BE")} – Sjabloon; vul jullie gegevens aan (btw/ondernemingsnr., adres).
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Footer({ onNav }) {
   return (
     <footer className="border-t bg-white/70 backdrop-blur">
       <div className="mx-auto max-w-6xl px-4 py-10 grid md:grid-cols-2 gap-6 text-sm text-gray-700">
@@ -457,38 +562,14 @@ function Footer() {
         </div>
         <div className="grid grid-cols-2 gap-4">
           <ul className="space-y-2">
-            <li>
-              <a href="#" className="hover:underline" onClick={(e) => e.preventDefault()}>
-                Algemene voorwaarden
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline" onClick={(e) => e.preventDefault()}>
-                Privacybeleid
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline" onClick={(e) => e.preventDefault()}>
-                Verzending & retour
-              </a>
-            </li>
+            <li><button onClick={() => onNav("terms")} className="hover:underline">Algemene voorwaarden</button></li>
+            <li><button onClick={() => onNav("privacy")} className="hover:underline">Privacybeleid</button></li>
+            <li><a href="#" className="hover:underline" onClick={(e)=>e.preventDefault()}>Verzending & retour</a></li>
           </ul>
           <ul className="space-y-2">
-            <li>
-              <a href="#" className="hover:underline" onClick={(e) => e.preventDefault()}>
-                Instagram
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline" onClick={(e) => e.preventDefault()}>
-                Facebook
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:underline" onClick={(e) => e.preventDefault()}>
-                LinkedIn
-              </a>
-            </li>
+            <li><a href="#" className="hover:underline" onClick={(e)=>e.preventDefault()}>Instagram</a></li>
+            <li><a href="#" className="hover:underline" onClick={(e)=>e.preventDefault()}>Facebook</a></li>
+            <li><a href="#" className="hover:underline" onClick={(e)=>e.preventDefault()}>LinkedIn</a></li>
           </ul>
         </div>
       </div>
@@ -498,3 +579,4 @@ function Footer() {
     </footer>
   );
 }
+
